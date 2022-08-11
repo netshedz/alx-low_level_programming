@@ -1,5 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
 #include "lists.h"
 
 /**
@@ -9,16 +7,12 @@
  */
 void free_list(list_t *head)
 {
-struct list_s *temp = NULL;
-struct list_s *aux =  NULL;
+	list_t *current;
 
-temp = head;
-while (temp != NULL)
-{
-	aux = temp->next;
-	free(temp->str);
-	free(temp);
-	temp = aux;
-}
-head = NULL;
+	while ((current = head) != NULL)
+	{
+		head = head->next;
+		free(current->str);
+		free(current);
+	}
 }
